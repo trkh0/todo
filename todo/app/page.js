@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Navbar from "./components/navbar/Navbar.js";
+
 import { getSupabaseClient, supabaseClient } from "./utils/supabase/SupabaseClient.js";
 
 export const revalidate = 1;
@@ -14,8 +14,6 @@ export default async function Home() {
 
   return (
     <div className="tw-bg-white">
-      <Navbar />
-
     </div>
   );
 }
