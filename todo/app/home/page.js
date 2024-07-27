@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 
 import { createClient } from '../utils/supabase/server'
+import HomeContents from '../components/home/HomeContents'
 
 export default async function HomePage() {
   const supabase = createClient()
@@ -10,5 +11,7 @@ export default async function HomePage() {
     redirect('/login')
   }
 
-  return <p>Home</p>
+  const tasks = await supabase.from('todos').select('*')
+
+  return <HomeContents task_data={tasks}/>
 }
