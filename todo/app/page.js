@@ -1,19 +1,13 @@
 import Image from "next/image";
-
-import { getSupabaseClient, supabaseClient } from "./utils/supabase/SupabaseClient.js";
+import { redirect } from 'next/navigation'
 
 export const revalidate = 1;
 
 export default async function Home() {
-  let supabase = getSupabaseClient();
-  let { data: zodiacsigns } = await supabase
-  .from("test")
-  .select("*")
-  console.log(zodiacsigns);
 
+  redirect('/home')
 
   return (
-    <div className="tw-bg-white">
-    </div>
+    <></>
   );
 }
