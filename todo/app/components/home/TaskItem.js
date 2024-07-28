@@ -21,30 +21,30 @@ const TaskItem = ({
   return (
     <>
       <div
-        class="modal"
+        className="modal"
         id={"taskModal" + id}
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="taskModalLabel"
         aria-hidden="true"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="taskModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="taskModalLabel">
                 {title}
               </h1>
             </div>
             <form>
-              <div class="modal-body">
-                <div class="input-group mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-default">
+              <div className="modal-body">
+                <div className="input-group mb-3">
+                  <span className="input-group-text" id="inputGroup-sizing-default">
                     Title
                   </span>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="title-input"
                     name="title-input"
                     aria-label="title-input"
@@ -56,13 +56,13 @@ const TaskItem = ({
                   />
                 </div>
                 <input type="hidden" name="task-id" value={id} />
-                <div class="input-group mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-default">
+                <div className="input-group mb-3">
+                  <span className="input-group-text" id="inputGroup-sizing-default">
                     Description
                   </span>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="description-input"
                     name="description-input"
                     aria-label="description-input"
@@ -73,13 +73,13 @@ const TaskItem = ({
                     }}
                   />
                 </div>
-                <div class="input-group mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-default">
+                <div className="input-group mb-3">
+                  <span className="input-group-text" id="inputGroup-sizing-default">
                     Due date
                   </span>
                   <input
                     type="date"
-                    class="form-control"
+                    className="form-control"
                     id="due-date-input"
                     name="due-date-input"
                     aria-label="description-input"
@@ -91,10 +91,10 @@ const TaskItem = ({
                   />
                 </div>
               </div>
-              <div class="modal-footer">
+              <div className="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-secondary"
+                  className="btn btn-secondary"
                   data-bs-dismiss="modal"
                   onClick={() => {
                     setNewDescription(description);
@@ -107,7 +107,7 @@ const TaskItem = ({
                 <button
                   type="submit"
                   formAction={updateTask}
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   data-bs-dismiss="modal"
                 >
                   Save changes
@@ -127,9 +127,9 @@ const TaskItem = ({
           </div>
         </a>
         <div className="d-flex justify-content-around p-2">
-          <div class="dropdown">
+          <div className="dropdown">
             <button
-              class="btn btn-primary dropdown-toggle"
+              className="btn btn-primary dropdown-toggle"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -139,24 +139,24 @@ const TaskItem = ({
             <form>
               <input type="hidden" name="task-id" value={id}/>
               <input type="hidden" name="status-input" value={newStatus}/>
-              <ul class="dropdown-menu">
+              <ul className="dropdown-menu">
                 <li hidden={status == 1}>
-                  <button class="dropdown-item" onClick={() => setNewStatus(1)} type="submit" formAction={updateStatus}>
+                  <button className="dropdown-item" onClick={() => setNewStatus(1)} type="submit" formAction={updateStatus}>
                     Tasks
                   </button>
                 </li>
                 <li hidden={status == 2}>
-                  <button class="dropdown-item" onClick={() => setNewStatus(2)} type="submit" formAction={updateStatus}>
+                  <button className="dropdown-item" onClick={() => setNewStatus(2)} type="submit" formAction={updateStatus}>
                     In progress
                   </button>
                 </li>
                 <li hidden={status == 3}>
-                  <button class="dropdown-item" onClick={() => setNewStatus(3)} type="submit" formAction={updateStatus}>
+                  <button className="dropdown-item" onClick={() => setNewStatus(3)} type="submit" formAction={updateStatus}>
                     Done
                   </button>
                 </li>
                 <li hidden={status == 1 || status == 2}>
-                  <button class="dropdown-item" onClick={() => setNewStatus(4)} type="submit" formAction={updateStatus}>
+                  <button className="dropdown-item" onClick={() => setNewStatus(4)} type="submit" formAction={updateStatus}>
                     Archive
                   </button>
                 </li>

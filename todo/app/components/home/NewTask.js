@@ -12,35 +12,35 @@ function NewTask() {
   return (
     <div>
       <a data-bs-toggle="modal" data-bs-target={"#newTaskModal"}>
-        <button type="button" class="btn btn-primary w-100 my-2 p-2">
+        <button type="button" className="btn btn-primary w-100 my-2 p-2">
           New task
         </button>
       </a>
       <div
-        class="modal"
+        className="modal"
         id={"newTaskModal"}
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="taskModalLabel"
         aria-hidden="true"
         data-bs-backdrop="static"
         data-bs-keyboard="false"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="taskModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="taskModalLabel">
                 New task
               </h1>
             </div>
             <form>
-              <div class="modal-body">
-                <div class="input-group mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-default">
+              <div className="modal-body">
+                <div className="input-group mb-3">
+                  <span className="input-group-text" id="inputGroup-sizing-default">
                     Title
                   </span>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="title-input"
                     name="title-input"
                     aria-label="title-input"
@@ -51,13 +51,13 @@ function NewTask() {
                     }}
                   />
                 </div>
-                <div class="input-group mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-default">
+                <div className="input-group mb-3">
+                  <span className="input-group-text" id="inputGroup-sizing-default">
                     Description
                   </span>
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="description-input"
                     name="description-input"
                     aria-label="description-input"
@@ -68,13 +68,13 @@ function NewTask() {
                     }}
                   />
                 </div>
-                <div class="input-group mb-3">
-                  <span class="input-group-text" id="inputGroup-sizing-default">
+                <div className="input-group mb-3">
+                  <span className="input-group-text" id="inputGroup-sizing-default">
                     Due date
                   </span>
                   <input
                     type="date"
-                    class="form-control"
+                    className="form-control"
                     id="due-date-input"
                     name="due-date-input"
                     aria-label="description-input"
@@ -86,10 +86,10 @@ function NewTask() {
                   />
                 </div>
               </div>
-              <div class="modal-footer">
+              <div className="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-secondary"
+                  className="btn btn-secondary"
                   data-bs-dismiss="modal"
                   onClick={() => {
                     setNewDescription("");
@@ -97,15 +97,15 @@ function NewTask() {
                     setNewDueDate(date);
                   }}
                 >
-                  Close
+                  Cancel
                 </button>
                 <button
                   type="submit"
                   formAction={createTask}
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   data-bs-dismiss="modal"
                 >
-                  Save changes
+                  Add task
                 </button>
               </div>
             </form>

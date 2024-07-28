@@ -21,7 +21,7 @@ const Navbar = async () => {
             alt="Logo"
             width="60"
             height="40"
-            class="d-inline-block"
+            className="d-inline-block"
           />
         </a>
         <button

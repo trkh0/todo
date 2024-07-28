@@ -32,17 +32,17 @@ const HomeContents = ({ task_data }) => {
 
   return (
     <div className="p-3">
-      <div class="">
+      <div className="">
         <NewTask />
       </div>
       <div
-        class="accordion accordion-flush border mb-4"
+        className="accordion accordion-flush border mb-4"
         id="accordionFlushExample"
       >
-        <div class="accordion-item">
-          <h2 class="accordion-header">
+        <div className="accordion-item">
+          <h2 className="accordion-header">
             <button
-              class="accordion-button collapsed"
+              className="accordion-button collapsed"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#flush-collapseOne"
@@ -54,15 +54,15 @@ const HomeContents = ({ task_data }) => {
           </h2>
           <div
             id="flush-collapseOne"
-            class="accordion-collapse collapse"
+            className="accordion-collapse collapse"
             data-bs-parent="#accordionFlushExample"
           >
-            <div class="accordion-body d-flex align-items-center flex-wrap justify-content-center">
-              <div class="form-check form-switch d-flex align-items-center mb-3">
+            <div className="accordion-body d-flex align-items-center flex-wrap justify-content-center">
+              <div className="form-check form-switch d-flex align-items-center mb-3">
                 <span>All</span>
                 <div className="ps-5">
                   <input
-                    class="form-check-input"
+                    className="form-check-input"
                     type="checkbox"
                     role="switch"
                     id="flexSwitchCheckDefault"
@@ -73,16 +73,24 @@ const HomeContents = ({ task_data }) => {
                 <span>Today</span>
               </div>
               <div className="mx-5 d-flex flex-row align-items-center mb-3">
-                <label className="text-nowrap pe-2 fs-6 align-middle">Order by:</label>
+                <label className="text-nowrap pe-2 fs-6 align-middle">
+                  Order by:
+                </label>
                 <select
-                  class="form-select form-select-sm"
+                  className="form-select form-select-sm"
                   aria-label="Small select example"
                   onChange={(e) => setOrderFilter(e.target.value)}
                   defaultValue={orderFilter}
                 >
-                  <option disabled key='1'>Order tasks</option>
-                  <option value="2" key='2'>Created</option>
-                  <option value="1" key='3'>Due date</option>
+                  <option disabled key="1">
+                    Order tasks
+                  </option>
+                  <option value="2" key="2">
+                    Created
+                  </option>
+                  <option value="1" key="3">
+                    Due date
+                  </option>
                 </select>
               </div>
             </div>
@@ -94,6 +102,7 @@ const HomeContents = ({ task_data }) => {
           <p>Tasks</p>
           {tasks_unfinished.map((task) => (
             <TaskItem
+              key={task.id}
               id={task.id}
               created_at={task.created_at}
               due_date={task.due_date}
@@ -108,6 +117,7 @@ const HomeContents = ({ task_data }) => {
           <p>In Progress</p>
           {tasks_in_progress.map((task) => (
             <TaskItem
+              key={task.id}
               id={task.id}
               created_at={task.created_at}
               due_date={task.due_date}
@@ -122,6 +132,7 @@ const HomeContents = ({ task_data }) => {
           <p>Done</p>
           {tasks_finished.map((task) => (
             <TaskItem
+              key={task.id}
               id={task.id}
               created_at={task.created_at}
               due_date={task.due_date}
