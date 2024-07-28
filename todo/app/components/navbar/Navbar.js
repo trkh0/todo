@@ -15,7 +15,7 @@ const Navbar = async () => {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand align-items-center pe-2" href="#">
+        <a className="navbar-brand align-items-center pe-2" href="/home">
           <img
             src="/site_logo.png"
             alt="Logo"
@@ -39,20 +39,26 @@ const Navbar = async () => {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 w-100">
             {isAuthenticated ? (
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <a className="nav-link active" aria-current="page" href="/home">
                   Home
                 </a>
               </li>
             ) : null}
 
+
             {isAuthenticated ? (
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
-                  Link
+              <a className="nav-link active" aria-current="page" href="/profile">
+                Profile
+              </a>
+            </li>
+            ) : (
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="/login">
+                  Login
                 </a>
               </li>
-            ) : null}
-
+            )}
             {isAuthenticated ? (
               <li className="nav-item dropdown">
                 <a
@@ -86,20 +92,6 @@ const Navbar = async () => {
                 </ul>
               </li>
             ) : null}
-
-            {isAuthenticated ? (
-              <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/profile">
-                Profile
-              </a>
-            </li>
-            ) : (
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/login">
-                  Login
-                </a>
-              </li>
-            )}
           </ul>
         </div>
       </div>

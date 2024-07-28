@@ -55,7 +55,7 @@ const HomeContents = ({ task_data }) => {
             data-bs-parent="#accordionFlushExample"
           >
             <div class="accordion-body d-flex align-items-center flex-wrap justify-content-center">
-              <div class="form-check form-switch d-flex align-items-center pb-3">
+              <div class="form-check form-switch d-flex align-items-center mb-3">
                 <span>All</span>
                 <div className="ps-5">
                   <input
@@ -69,7 +69,7 @@ const HomeContents = ({ task_data }) => {
                 </div>
                 <span>Today</span>
               </div>
-              <div className="mx-5 d-flex flex-row align-items-center">
+              <div className="mx-5 d-flex flex-row align-items-center mb-3">
                 <label className="text-nowrap pe-2 fs-6 align-middle">Order by:</label>
                 <select
                   class="form-select form-select-sm"
