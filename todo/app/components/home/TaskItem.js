@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { updateTask } from "./actions";
+import { updateStatus, updateTask } from "./actions";
 
 const TaskItem = ({
   id,
@@ -16,6 +16,7 @@ const TaskItem = ({
   const [newTitle, setNewTitle] = React.useState(title);
   const [newDescription, setNewDescription] = React.useState(description);
   const [newDueDate, setNewDueDate] = React.useState(due_date);
+  const [newStatus, setNewStatus] = React.useState(status);
 
   return (
     <>
@@ -117,15 +118,53 @@ const TaskItem = ({
         </div>
       </div>
 
-      <a data-bs-toggle="modal" data-bs-target={"#taskModal" + id}>
-        <div className="card text-bg-secondary mb-3 w-100">
+      <div className="card text-bg-secondary mb-3 w-100">
+        <a data-bs-toggle="modal" data-bs-target={"#taskModal" + id}>
           <div className="card-header">{title}</div>
           <div className="card-body">
-            <h5 className="card-title">Secondary card title</h5>
-            <p className="card-text">{description}</p>
+            <p className="card-title">{description}</p>
+            <p className="card-text">Due date: {due_date}</p>
+          </div>
+        </a>
+        <div className="d-flex justify-content-around p-2">
+          <div class="dropdown">
+            <button
+              class="btn btn-primary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Move to
+            </button>
+            <form>
+              <input type="hidden" name="task-id" value={id}/>
+              <input type="hidden" name="status-input" value={newStatus}/>
+              <ul class="dropdown-menu">
+                <li hidden={status == 1}>
+                  <button class="dropdown-item" onClick={() => setNewStatus(1)} type="submit" formAction={updateStatus}>
+                    Tasks
+                  </button>
+                </li>
+                <li hidden={status == 2}>
+                  <button class="dropdown-item" onClick={() => setNewStatus(2)} type="submit" formAction={updateStatus}>
+                    In progress
+                  </button>
+                </li>
+                <li hidden={status == 3}>
+                  <button class="dropdown-item" onClick={() => setNewStatus(3)} type="submit" formAction={updateStatus}>
+                    Done
+                  </button>
+                </li>
+                <li hidden={status == 1 || status == 2}>
+                  <button class="dropdown-item" onClick={() => setNewStatus(4)} type="submit" formAction={updateStatus}>
+                    Archive
+                  </button>
+                </li>
+              </ul>
+            </form>
           </div>
         </div>
-      </a>
+      </div>
     </>
   );
 };

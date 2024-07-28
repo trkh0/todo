@@ -12,10 +12,10 @@ export async function updateTask(formData) {
     title: formData.get("title-input"),
     description: formData.get("description-input"),
     due_date: formData.get("due-date-input"),
-    id: formData.get("task-id"),
-  };
+};
+    let id = formData.get("task-id")
 
-  const { error } = await supabase.from("todos").update(data).eq("id", data.id);
+  const { error } = await supabase.from("todos").update(data).eq("id", id);
 
   if (error) {
     redirect("/error");
@@ -24,3 +24,21 @@ export async function updateTask(formData) {
   revalidatePath("/", "layout");
   redirect("/");
 }
+
+export async function updateStatus(formData) {
+    const supabase = createClient();
+  
+    const data = {
+      status: formData.get("status-input"),
+    };
+    const id = formData.get("task-id")
+  
+    const { error } = await supabase.from("todos").update(data).eq("id", id);
+  
+    if (error) {
+      redirect("/error");
+    }
+  
+    revalidatePath("/", "layout");
+    redirect("/");
+  }
