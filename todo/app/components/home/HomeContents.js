@@ -7,6 +7,7 @@ const HomeContents = ({ task_data }) => {
   const currentDate = new Date();
 
   const [todayFilter, setTodayFilter] = React.useState(false);
+  const [orderFilter, setOrderFilter] = React.useState(2);
   let tasks = task_data.data;
 
   if (todayFilter) {
@@ -16,6 +17,12 @@ const HomeContents = ({ task_data }) => {
         task.due_date.slice(5, 7) == currentDate.getMonth() + 1 &&
         task.due_date.slice(0, 4) == currentDate.getFullYear()
     );
+  }
+
+  if (orderFilter == 1) {
+    tasks = tasks.sort((a, b) => (a.due_date < b.due_date ? 1 : -1));
+  } else if (orderFilter == 2) {
+    tasks = tasks.sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
   }
 
   const tasks_unfinished = tasks.filter((task) => task.status === 1);
@@ -47,9 +54,9 @@ const HomeContents = ({ task_data }) => {
             class="accordion-collapse collapse"
             data-bs-parent="#accordionFlushExample"
           >
-            <div class="accordion-body">
-              <div class="form-check form-switch d-flex">
-                <p>All</p>
+            <div class="accordion-body d-flex align-items-center flex-wrap justify-content-center">
+              <div class="form-check form-switch d-flex align-items-center pb-3">
+                <span>All</span>
                 <div className="ps-5">
                   <input
                     class="form-check-input"
@@ -60,7 +67,20 @@ const HomeContents = ({ task_data }) => {
                     onChange={() => setTodayFilter(!todayFilter)}
                   />
                 </div>
-                <p>Today</p>
+                <span>Today</span>
+              </div>
+              <div className="mx-5 d-flex flex-row align-items-center">
+                <label className="text-nowrap pe-2 fs-6 align-middle">Order by:</label>
+                <select
+                  class="form-select form-select-sm"
+                  aria-label="Small select example"
+                  onChange={(e) => setOrderFilter(e.target.value)}
+                  defaultValue={orderFilter}
+                >
+                  <option disabled>Order tasks</option>
+                  <option value="2">Created</option>
+                  <option value="1">Due date</option>
+                </select>
               </div>
             </div>
           </div>
