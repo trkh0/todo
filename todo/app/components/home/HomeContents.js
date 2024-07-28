@@ -2,6 +2,7 @@
 
 import React from "react";
 import TaskItem from "./TaskItem";
+import NewTask from "./NewTask";
 
 const HomeContents = ({ task_data }) => {
   const currentDate = new Date();
@@ -31,7 +32,9 @@ const HomeContents = ({ task_data }) => {
 
   return (
     <div className="p-3">
-      <div class=""></div>
+      <div class="">
+        <NewTask />
+      </div>
       <div
         class="accordion accordion-flush border mb-4"
         id="accordionFlushExample"
