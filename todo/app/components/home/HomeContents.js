@@ -21,7 +21,7 @@ const HomeContents = ({ task_data }) => {
   }
 
   if (orderFilter == 1) {
-    tasks = tasks.sort((a, b) => (a.due_date < b.due_date ? 1 : -1));
+    tasks = tasks.sort((a, b) => (a.due_date > b.due_date ? 1 : -1));
   } else if (orderFilter == 2) {
     tasks = tasks.sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
   }
@@ -80,9 +80,9 @@ const HomeContents = ({ task_data }) => {
                   onChange={(e) => setOrderFilter(e.target.value)}
                   defaultValue={orderFilter}
                 >
-                  <option disabled>Order tasks</option>
-                  <option value="2">Created</option>
-                  <option value="1">Due date</option>
+                  <option disabled key='1'>Order tasks</option>
+                  <option value="2" key='2'>Created</option>
+                  <option value="1" key='3'>Due date</option>
                 </select>
               </div>
             </div>
