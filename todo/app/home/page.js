@@ -11,7 +11,10 @@ export default async function HomePage() {
     redirect("/login");
   }
 
-  const tasks = await supabase.from("todos").select("*");
+  const tasks = await supabase
+    .from("todos")
+    .select("*")
+    .eq("user_id", data.user.id);
 
   return <HomeContents task_data={tasks} />;
 }
