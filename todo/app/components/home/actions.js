@@ -84,7 +84,7 @@ export async function createTask(formData) {
 export async function deleteTask(formData) {
   const supabase = createClient();
 
-  const id = formData.get("task-id");
+  const id = formData.get("task-id-delete");
 
   const { error } = await supabase.from("todos").delete().eq("id", id);
 
@@ -94,7 +94,7 @@ export async function deleteTask(formData) {
 
   revalidatePath("/", "layout");
   redirect("/");
-}
+}   
 
 export async function archiveTask(formData) {
   const supabase = createClient();

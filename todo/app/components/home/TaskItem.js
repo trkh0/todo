@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { archiveTask, updateStatus, updateTask } from "./actions";
+import { archiveTask, deleteTask, updateStatus, updateTask } from "./actions";
 
 const TaskItem = ({
   id,
@@ -17,6 +17,7 @@ const TaskItem = ({
   const [newDescription, setNewDescription] = React.useState(description);
   const [newDueDate, setNewDueDate] = React.useState(due_date);
   const [newStatus, setNewStatus] = React.useState(status);
+  const [taskId, setTaskId] = React.useState(id);
 
   return (
     <>
@@ -39,7 +40,10 @@ const TaskItem = ({
             <form>
               <div className="modal-body">
                 <div className="input-group mb-3">
-                  <span className="input-group-text" id="inputGroup-sizing-default">
+                  <span
+                    className="input-group-text"
+                    id="inputGroup-sizing-default"
+                  >
                     Title
                   </span>
                   <input
@@ -57,7 +61,10 @@ const TaskItem = ({
                 </div>
                 <input type="hidden" name="task-id" value={id} />
                 <div className="input-group mb-3">
-                  <span className="input-group-text" id="inputGroup-sizing-default">
+                  <span
+                    className="input-group-text"
+                    id="inputGroup-sizing-default"
+                  >
                     Description
                   </span>
                   <input
@@ -74,7 +81,10 @@ const TaskItem = ({
                   />
                 </div>
                 <div className="input-group mb-3">
-                  <span className="input-group-text" id="inputGroup-sizing-default">
+                  <span
+                    className="input-group-text"
+                    id="inputGroup-sizing-default"
+                  >
                     Due date
                   </span>
                   <input
@@ -137,31 +147,107 @@ const TaskItem = ({
               Move to
             </button>
             <form>
-              <input type="hidden" name="task-id" value={id}/>
-              <input type="hidden" name="status-input" value={newStatus}/>
+              <input type="hidden" name="task-id" value={id} />
+              <input type="hidden" name="status-input" value={newStatus} />
               <ul className="dropdown-menu">
                 <li hidden={status == 1}>
-                  <button className="dropdown-item" onClick={() => setNewStatus(1)} type="submit" formAction={updateStatus}>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => setNewStatus(1)}
+                    type="submit"
+                    formAction={updateStatus}
+                  >
                     Tasks
                   </button>
                 </li>
                 <li hidden={status == 2}>
-                  <button className="dropdown-item" onClick={() => setNewStatus(2)} type="submit" formAction={updateStatus}>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => setNewStatus(2)}
+                    type="submit"
+                    formAction={updateStatus}
+                  >
                     In progress
                   </button>
                 </li>
                 <li hidden={status == 3}>
-                  <button className="dropdown-item" onClick={() => setNewStatus(3)} type="submit" formAction={updateStatus}>
+                  <button
+                    className="dropdown-item"
+                    onClick={() => setNewStatus(3)}
+                    type="submit"
+                    formAction={updateStatus}
+                  >
                     Done
                   </button>
                 </li>
                 <li hidden={status == 1 || status == 2}>
-                  <button className="dropdown-item" type="submit" formAction={archiveTask}>
+                  <button
+                    className="dropdown-item"
+                    type="submit"
+                    formAction={archiveTask}
+                  >
                     Archive
                   </button>
                 </li>
               </ul>
             </form>
+          </div>
+
+          <button
+            type="button"
+            className="btn btn-danger"
+            data-bs-toggle="modal"
+            data-bs-target={"#confirmDelete" + taskId}
+            onClick={() => console.log(taskId)}
+          >
+            Delete
+          </button>
+          <div
+            className="modal fade"
+            id={"confirmDelete" + taskId}
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabIndex="-1"
+            aria-labelledby="confirmDeleteLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h1
+                    className="modal-title fs-5 text-black"
+                    id="confirmDeleteLabel"
+                  >
+                    Are you sure you want to delete this task?
+                  </h1>
+                </div>
+
+                <div className="modal-body">
+                  <p className="text-black">This action cannot be undone!</p>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <form>
+                    <input type="hidden" name="task-id-delete" value={taskId} />
+                    <button
+                      type="submit"
+                      onClick={() => console.log(taskId)}
+                      formAction={deleteTask}
+                      className="btn btn-danger"
+                      data-bs-dismiss="modal"
+                    >
+                      Delete
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

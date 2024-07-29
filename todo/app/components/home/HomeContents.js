@@ -37,7 +37,7 @@ const HomeContents = ({ task_data }) => {
       </div>
       <div
         className="accordion accordion-flush border mb-4"
-        id="accordionFlushExample"
+        id="filterAccordion"
       >
         <div className="accordion-item">
           <h2 className="accordion-header">
@@ -55,7 +55,7 @@ const HomeContents = ({ task_data }) => {
           <div
             id="flush-collapseOne"
             className="accordion-collapse collapse"
-            data-bs-parent="#accordionFlushExample"
+            data-bs-parent="#filterAccordion"
           >
             <div className="accordion-body d-flex align-items-center flex-wrap justify-content-center">
               <div className="form-check form-switch d-flex align-items-center mb-3">
