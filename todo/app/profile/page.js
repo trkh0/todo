@@ -11,11 +11,11 @@ export default async function ProfilePage() {
   }
 
   return (
-    <>
-      <p>Hello {data.user.email}</p>
-      <form>
-        <button formAction={signout}>Sign Out</button>
+    <div className="w-100 d-flex flex-column align-items-center py-5">
+      <h3 className="py-2">Hello {data.user.email}</h3>
+      <form className="w-100 tw-max-w-80 my-5">
+        <button className="btn btn-primary w-100" formAction={signout}>Sign Out</button>
       </form>
-    </>
+    </div>
   );
 }
