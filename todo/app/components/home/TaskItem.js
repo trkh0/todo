@@ -18,6 +18,7 @@ const TaskItem = ({
   const [newDueDate, setNewDueDate] = React.useState(due_date);
   const [newStatus, setNewStatus] = React.useState(status);
   const [taskId, setTaskId] = React.useState(id);
+  const dateNow = new Date().toISOString().slice(0, 10);
 
   return (
     <>
@@ -128,18 +129,34 @@ const TaskItem = ({
         </div>
       </div>
 
-      <div className="card text-bg-secondary mb-3 w-100">
+      <div className="card text-bg-light mb-3 w-100">
         <a data-bs-toggle="modal" data-bs-target={"#taskModal" + id}>
           <div className="card-header">{title}</div>
           <div className="card-body">
             <p className="card-title">{description}</p>
-            <p className="card-text">Due date: {due_date}</p>
+            <div className="d-flex flex-row">
+              <p className="card-text pe-2 m-0">Due date: </p>
+              <p
+                className={
+                  "card-text " +
+                  (newStatus == 1 || newStatus == 2
+                    ? due_date == dateNow
+                      ? "text-warning"
+                      : due_date > dateNow
+                      ? "text-black"
+                      : "text-danger"
+                    : "text-success")
+                }
+              >
+                {due_date}
+              </p>
+            </div>
           </div>
         </a>
         <div className="d-flex justify-content-around p-2">
           <div className="dropdown">
             <button
-              className="btn btn-primary dropdown-toggle"
+              className="btn btn-outline-primary dropdown-toggle"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -195,7 +212,7 @@ const TaskItem = ({
 
           <button
             type="button"
-            className="btn btn-danger"
+            className="btn btn-outline-danger"
             data-bs-toggle="modal"
             data-bs-target={"#confirmDelete" + taskId}
           >
