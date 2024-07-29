@@ -8,6 +8,7 @@ const ArchivedContents = ({ task_data }) => {
 
   const [todayFilter, setTodayFilter] = React.useState(false);
   const [orderFilter, setOrderFilter] = React.useState(2);
+  const [searchFilter, setSearchFilter] = React.useState("");
   let tasks = task_data.data;
 
   if (todayFilter) {
@@ -23,6 +24,10 @@ const ArchivedContents = ({ task_data }) => {
     tasks = tasks.sort((a, b) => (a.due_date > b.due_date ? 1 : -1));
   } else if (orderFilter == 2) {
     tasks = tasks.sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
+  }
+
+  if (searchFilter) {
+    tasks = tasks.filter((task) => task.title.includes(searchFilter));
   }
 
   return (
@@ -85,14 +90,27 @@ const ArchivedContents = ({ task_data }) => {
                   </option>
                 </select>
               </div>
+              <div class="input-group mb-3 d-flex align-items-center mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">
+                  Search
+                </span>
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="search-input"
+                  aria-describedby="search-input-desc"
+                  onChange={(e) => setSearchFilter(e.target.value)}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div className="d-flex flex-wrap">
         <div className="w-100 px-2">
-          <p>Archived tasks</p>
+          <p className="fs-3">Archived tasks</p>
           <div className="d-flex flex-wrap">
+            <p hidden={tasks.length ? true : false}>No task found!</p>
             {tasks.map((task) => (
               <div className=" tw-max-w-96 w-100 px-2">
                 <TaskItemArchived

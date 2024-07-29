@@ -9,6 +9,7 @@ const HomeContents = ({ task_data }) => {
 
   const [todayFilter, setTodayFilter] = React.useState(false);
   const [orderFilter, setOrderFilter] = React.useState(2);
+  const [searchFilter, setSearchFilter] = React.useState("");
   let tasks = task_data.data;
 
   if (todayFilter) {
@@ -24,6 +25,10 @@ const HomeContents = ({ task_data }) => {
     tasks = tasks.sort((a, b) => (a.due_date > b.due_date ? 1 : -1));
   } else if (orderFilter == 2) {
     tasks = tasks.sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
+  }
+
+  if (searchFilter) {
+    tasks = tasks.filter((task) => task.title.includes(searchFilter));
   }
 
   const tasks_unfinished = tasks.filter((task) => task.status === 1);
@@ -93,13 +98,26 @@ const HomeContents = ({ task_data }) => {
                   </option>
                 </select>
               </div>
+              <div class="input-group mb-3 d-flex align-items-center mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">
+                  Search
+                </span>
+                <input
+                  type="text"
+                  class="form-control"
+                  aria-label="search-input"
+                  aria-describedby="search-input-desc"
+                  onChange={(e) => setSearchFilter(e.target.value)}
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div className="d-flex flex-wrap">
         <div className="w-100 tw-max-w-96 px-2">
-          <p>To-do</p>
+          <p className="fs-3">To-do</p>
+          <p hidden={tasks_unfinished.length ? true : false}>No task found!</p>
           {tasks_unfinished.map((task) => (
             <TaskItem
               key={task.id}
@@ -114,7 +132,8 @@ const HomeContents = ({ task_data }) => {
           ))}
         </div>
         <div className="w-100 tw-max-w-96 px-2">
-          <p>In Progress</p>
+          <p className="fs-3">In Progress</p>
+          <p hidden={tasks_in_progress.length ? true : false}>No task found!</p>
           {tasks_in_progress.map((task) => (
             <TaskItem
               key={task.id}
@@ -129,7 +148,8 @@ const HomeContents = ({ task_data }) => {
           ))}
         </div>
         <div className="w-100 tw-max-w-96 px-2">
-          <p>Done</p>
+          <p className="fs-3">Done</p>
+          <p hidden={tasks_finished.length ? true : false}>No task found!</p>
           {tasks_finished.map((task) => (
             <TaskItem
               key={task.id}

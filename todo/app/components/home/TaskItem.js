@@ -68,7 +68,7 @@ const TaskItem = ({
                   >
                     Description
                   </span>
-                  <input
+                  <textarea
                     type="text"
                     className="form-control"
                     id="description-input"

@@ -14,7 +14,7 @@ function NewTask() {
       <a data-bs-toggle="modal" data-bs-target={"#newTaskModal"}>
         <button
           type="button"
-          className="btn btn-primary w-100 my-2 p-2"
+          className="btn btn-outline-secondary w-100 my-2 p-2"
           onClick={() => {
             setNewDescription("");
             setNewTitle("");
@@ -69,7 +69,7 @@ function NewTask() {
                   >
                     Description
                   </span>
-                  <input
+                  <textarea
                     type="text"
                     className="form-control"
                     id="description-input"
