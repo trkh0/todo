@@ -17,7 +17,7 @@ const TaskItem = ({
 
   return (
     <>
-      <div className="card text-bg-secondary mb-3 w-100">
+      <div className="card text-bg-light mb-3 w-100">
           <div className="card-header">{title}</div>
           <div className="card-body">
             <p className="card-title">{description}</p>
@@ -27,7 +27,7 @@ const TaskItem = ({
           <form>
             <input type="hidden" name="task-id" value={taskId} />
             <button
-              className="btn btn-primary"
+              className="btn btn-outline-primary"
               type="submit"
               formAction={unarchiveTask}
             >
@@ -36,7 +36,7 @@ const TaskItem = ({
           </form>
           <button
             type="button"
-            className="btn btn-danger"
+            className="btn btn-outline-danger"
             data-bs-toggle="modal"
             data-bs-target={"#confirmDelete" + taskId}
           >
@@ -68,7 +68,7 @@ const TaskItem = ({
                 <div className="modal-footer">
                   <button
                     type="button"
-                    className="btn btn-secondary"
+                    className="btn btn-outline-secondary"
                     data-bs-dismiss="modal"
                   >
                     Cancel
