@@ -157,7 +157,7 @@ const TaskItem = ({
                     type="submit"
                     formAction={updateStatus}
                   >
-                    Tasks
+                    To-do
                   </button>
                 </li>
                 <li hidden={status == 2}>
@@ -198,7 +198,6 @@ const TaskItem = ({
             className="btn btn-danger"
             data-bs-toggle="modal"
             data-bs-target={"#confirmDelete" + taskId}
-            onClick={() => console.log(taskId)}
           >
             Delete
           </button>
@@ -237,7 +236,6 @@ const TaskItem = ({
                     <input type="hidden" name="task-id-delete" value={taskId} />
                     <button
                       type="submit"
-                      onClick={() => console.log(taskId)}
                       formAction={deleteTask}
                       className="btn btn-danger"
                       data-bs-dismiss="modal"

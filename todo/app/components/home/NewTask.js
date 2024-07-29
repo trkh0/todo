@@ -12,7 +12,15 @@ function NewTask() {
   return (
     <div>
       <a data-bs-toggle="modal" data-bs-target={"#newTaskModal"}>
-        <button type="button" className="btn btn-primary w-100 my-2 p-2">
+        <button
+          type="button"
+          className="btn btn-primary w-100 my-2 p-2"
+          onClick={() => {
+            setNewDescription("");
+            setNewTitle("");
+            setNewDueDate(date);
+          }}
+        >
           New task
         </button>
       </a>
@@ -35,7 +43,10 @@ function NewTask() {
             <form>
               <div className="modal-body">
                 <div className="input-group mb-3">
-                  <span className="input-group-text" id="inputGroup-sizing-default">
+                  <span
+                    className="input-group-text"
+                    id="inputGroup-sizing-default"
+                  >
                     Title
                   </span>
                   <input
@@ -52,7 +63,10 @@ function NewTask() {
                   />
                 </div>
                 <div className="input-group mb-3">
-                  <span className="input-group-text" id="inputGroup-sizing-default">
+                  <span
+                    className="input-group-text"
+                    id="inputGroup-sizing-default"
+                  >
                     Description
                   </span>
                   <input
@@ -69,7 +83,10 @@ function NewTask() {
                   />
                 </div>
                 <div className="input-group mb-3">
-                  <span className="input-group-text" id="inputGroup-sizing-default">
+                  <span
+                    className="input-group-text"
+                    id="inputGroup-sizing-default"
+                  >
                     Due date
                   </span>
                   <input
@@ -91,11 +108,6 @@ function NewTask() {
                   type="button"
                   className="btn btn-secondary"
                   data-bs-dismiss="modal"
-                  onClick={() => {
-                    setNewDescription("");
-                    setNewTitle("");
-                    setNewDueDate(date);
-                  }}
                 >
                   Cancel
                 </button>

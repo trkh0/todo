@@ -1,10 +1,9 @@
 "use client";
 
 import React from "react";
-import TaskItem from "./TaskItem";
-import NewTask from "./NewTask";
+import TaskItemArchived from "./TaskItemArchived";
 
-const HomeContents = ({ task_data }) => {
+const ArchivedContents = ({ task_data }) => {
   const currentDate = new Date();
 
   const [todayFilter, setTodayFilter] = React.useState(false);
@@ -26,15 +25,8 @@ const HomeContents = ({ task_data }) => {
     tasks = tasks.sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
   }
 
-  const tasks_unfinished = tasks.filter((task) => task.status === 1);
-  const tasks_in_progress = tasks.filter((task) => task.status === 2);
-  const tasks_finished = tasks.filter((task) => task.status === 3);
-
   return (
     <div className="p-3">
-      <div className="">
-        <NewTask />
-      </div>
       <div
         className="accordion accordion-flush border mb-4"
         id="filterAccordion"
@@ -98,54 +90,28 @@ const HomeContents = ({ task_data }) => {
         </div>
       </div>
       <div className="d-flex flex-wrap">
-        <div className="w-100 tw-max-w-96 px-2">
-          <p>To-do</p>
-          {tasks_unfinished.map((task) => (
-            <TaskItem
-              key={task.id}
-              id={task.id}
-              created_at={task.created_at}
-              due_date={task.due_date}
-              user_id={task.user_id}
-              title={task.title}
-              description={task.description}
-              status={task.status}
-            />
-          ))}
-        </div>
-        <div className="w-100 tw-max-w-96 px-2">
-          <p>In Progress</p>
-          {tasks_in_progress.map((task) => (
-            <TaskItem
-              key={task.id}
-              id={task.id}
-              created_at={task.created_at}
-              due_date={task.due_date}
-              user_id={task.user_id}
-              title={task.title}
-              description={task.description}
-              status={task.status}
-            />
-          ))}
-        </div>
-        <div className="w-100 tw-max-w-96 px-2">
-          <p>Done</p>
-          {tasks_finished.map((task) => (
-            <TaskItem
-              key={task.id}
-              id={task.id}
-              created_at={task.created_at}
-              due_date={task.due_date}
-              user_id={task.user_id}
-              title={task.title}
-              description={task.description}
-              status={task.status}
-            />
-          ))}
+        <div className="w-100 px-2">
+          <p>Archived tasks</p>
+          <div className="d-flex flex-wrap">
+            {tasks.map((task) => (
+              <div className=" tw-max-w-96 w-100 px-2">
+                <TaskItemArchived
+                  key={task.id}
+                  id={task.id}
+                  created_at={task.created_at}
+                  due_date={task.due_date}
+                  user_id={task.user_id}
+                  title={task.title}
+                  description={task.description}
+                  status={task.status}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default HomeContents;
+export default ArchivedContents;
