@@ -25,7 +25,6 @@ export async function updateTask(formData) {
   }
 
   revalidatePath("/", "layout");
-  redirect("/");
 }
 
 export async function updateStatus(formData) {
@@ -43,7 +42,6 @@ export async function updateStatus(formData) {
   }
 
   revalidatePath("/", "layout");
-  redirect("/");
 }
 
 async function getUserId() {
@@ -78,7 +76,6 @@ export async function createTask(formData) {
   }
 
   revalidatePath("/", "layout");
-  redirect("/");
 }
 
 export async function deleteTask(formData) {
@@ -93,7 +90,6 @@ export async function deleteTask(formData) {
   }
 
   revalidatePath("/", "layout");
-  redirect("/");
 }   
 
 export async function archiveTask(formData) {
@@ -118,7 +114,6 @@ export async function archiveTask(formData) {
   }
 
   revalidatePath("/", "layout");
-  redirect("/");
 }
 
 export async function unarchiveTask(formData) {
@@ -141,5 +136,4 @@ export async function unarchiveTask(formData) {
   }
 
   revalidatePath("/", "layout");
-  redirect("/");
 }
