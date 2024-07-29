@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { updateStatus, updateTask } from "./actions";
+import { archiveTask, updateStatus, updateTask } from "./actions";
 
 const TaskItem = ({
   id,
@@ -156,7 +156,7 @@ const TaskItem = ({
                   </button>
                 </li>
                 <li hidden={status == 1 || status == 2}>
-                  <button className="dropdown-item" onClick={() => setNewStatus(4)} type="submit" formAction={updateStatus}>
+                  <button className="dropdown-item" type="submit" formAction={archiveTask}>
                     Archive
                   </button>
                 </li>

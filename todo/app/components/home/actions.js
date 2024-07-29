@@ -67,7 +67,6 @@ export async function createTask(formData) {
     status: "1",
     user_id: user_id,
   };
-  console.log(data);
   if (data.due_date === "") {
     delete data.due_date;
   }
@@ -75,6 +74,69 @@ export async function createTask(formData) {
   const { error } = await supabase.from("todos").insert(data).select();
 
   if (error) {
+    redirect("/error");
+  }
+
+  revalidatePath("/", "layout");
+  redirect("/");
+}
+
+export async function deleteTask(formData) {
+  const supabase = createClient();
+
+  const id = formData.get("task-id");
+
+  const { error } = await supabase.from("todos").delete().eq("id", id);
+
+  if (error) {
+    redirect("/error");
+  }
+
+  revalidatePath("/", "layout");
+  redirect("/");
+}
+
+export async function archiveTask(formData) {
+  const supabase = createClient();
+
+  const id = formData.get("task-id");
+
+  const { data, error } = await supabase
+    .from("todos")
+    .delete()
+    .eq("id", id)
+    .select();
+
+  delete data.id;
+
+  const { error: errorInsert } = await supabase
+    .from("todos_archived")
+    .insert(data);
+
+  if (error || errorInsert) {
+    redirect("/error");
+  }
+
+  revalidatePath("/", "layout");
+  redirect("/");
+}
+
+export async function unarchiveTask(formData) {
+  const supabase = createClient();
+
+  const id = formData.get("task-id");
+
+  const { data, error } = await supabase
+    .from("todos_archived")
+    .delete()
+    .eq("id", id)
+    .select();
+
+  delete data.id;
+
+  const { error: errorInsert } = await supabase.from("todos").insert(data);
+
+  if (error || errorInsert) {
     redirect("/error");
   }
 
