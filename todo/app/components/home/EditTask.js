@@ -3,22 +3,29 @@
 import React from "react";
 import { updateTask } from "./actions";
 
-const EditTask = ({ id, due_date, title, description }) => {
-  if (due_date != null) {
-    due_date = due_date.slice(0, 10);
+const EditTask = ({ task_id, task_due_date, task_title, task_description }) => {
+  if (task_due_date != null) {
+    task_due_date = task_due_date.slice(0, 10);
   } else {
     //date input field requires a string, not null
-    due_date = "";
+    task_due_date = "";
   }
+  const [dueDate, setDueDate] = React.useState(task_due_date);
+  const [title, setTitle] = React.useState(task_title);
+  const [description, setDescription] = React.useState(task_description);
+
   const [newTitle, setNewTitle] = React.useState(title);
   const [newDescription, setNewDescription] = React.useState(description);
-  const [newDueDate, setNewDueDate] = React.useState(due_date);
+  const [newDueDate, setNewDueDate] = React.useState(dueDate);
+  const [dueDateChecked, setDueDateChecked] = React.useState(
+    dueDate ? true : false
+  );
 
   return (
     <>
       <div
         className="modal"
-        id={"taskModal" + id}
+        id={"taskModal" + task_id}
         tabIndex="-1"
         aria-labelledby="taskModalLabel"
         aria-hidden="true"
@@ -54,7 +61,7 @@ const EditTask = ({ id, due_date, title, description }) => {
                     }}
                   />
                 </div>
-                <input type="hidden" name="task-id" value={id} />
+                <input type="hidden" name="task-id" value={task_id} />
                 <div className="input-group mb-3">
                   <span
                     className="input-group-text"
@@ -80,7 +87,25 @@ const EditTask = ({ id, due_date, title, description }) => {
                     className="input-group-text"
                     id="inputGroup-sizing-default"
                   >
-                    Due date
+                    <div className="d-flex align-items-center">
+                      <input
+                        class="form-check-input mb-1"
+                        type="checkbox"
+                        id="checkboxNoLabel"
+                        aria-label="due_date_checkbox"
+                        checked={dueDateChecked}
+                        onChange={(e) => {
+                          setDueDateChecked(e.target.checked);
+                          if (e.target.checked === false) {
+                            setNewDueDate("");
+                          } else {
+                            setNewDueDate(dueDate);
+                          }
+                        }}
+                      />
+
+                      <span className="ps-2">Due date</span>
+                    </div>
                   </span>
                   <input
                     type="date"
@@ -89,7 +114,8 @@ const EditTask = ({ id, due_date, title, description }) => {
                     name="due-date-input"
                     aria-label="description-input"
                     aria-describedby="inputGroup-sizing-default"
-                    value={newDueDate}
+                    disabled={!dueDateChecked}
+                    value={dueDateChecked ? newDueDate : ""}
                     onChange={(e) => {
                       setNewDueDate(e.target.value);
                     }}
@@ -104,7 +130,8 @@ const EditTask = ({ id, due_date, title, description }) => {
                   onClick={() => {
                     setNewDescription(description);
                     setNewTitle(title);
-                    setNewDueDate(due_date);
+                    setNewDueDate(dueDate);
+                    setDueDateChecked(dueDate ? true : false);
                   }}
                 >
                   Close
@@ -114,6 +141,12 @@ const EditTask = ({ id, due_date, title, description }) => {
                   formAction={updateTask}
                   className="btn btn-primary"
                   data-bs-dismiss="modal"
+                  onClick={() => {
+                    setDueDate(newDueDate);
+                    setDescription(newDescription);
+                    setTitle(newTitle);
+                    setDueDateChecked(newDueDate ? true : false);
+                  }}
                 >
                   Save changes
                 </button>

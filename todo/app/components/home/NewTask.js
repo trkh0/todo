@@ -8,6 +8,7 @@ function NewTask() {
   const [newTitle, setNewTitle] = React.useState("");
   const [newDescription, setNewDescription] = React.useState("");
   const [newDueDate, setNewDueDate] = React.useState(date);
+  const [dueDateChecked, setDueDateChecked] = React.useState(false);
 
   return (
     <div>
@@ -19,6 +20,7 @@ function NewTask() {
             setNewDescription("");
             setNewTitle("");
             setNewDueDate(date);
+            setDueDateChecked(false);
           }}
         >
           New task
@@ -87,7 +89,25 @@ function NewTask() {
                     className="input-group-text"
                     id="inputGroup-sizing-default"
                   >
-                    Due date
+                    <div className="d-flex align-items-center">
+                      <input
+                        class="form-check-input mb-1"
+                        type="checkbox"
+                        id="checkboxNoLabel"
+                        aria-label="due_date_checkbox"
+                        checked={dueDateChecked}
+                        onChange={(e) => {
+                          setDueDateChecked(e.target.checked);
+                          if (e.target.checked === false) {
+                            setNewDueDate("");
+                          } else {
+                            setNewDueDate(date);
+                          }
+                        }}
+                      />
+
+                      <span className="ps-2">Due date</span>
+                    </div>
                   </span>
                   <input
                     type="date"
@@ -96,7 +116,8 @@ function NewTask() {
                     name="due-date-input"
                     aria-label="description-input"
                     aria-describedby="inputGroup-sizing-default"
-                    value={newDueDate}
+                    disabled={!dueDateChecked}
+                    value={dueDateChecked ? newDueDate : ""}
                     onChange={(e) => {
                       setNewDueDate(e.target.value);
                     }}

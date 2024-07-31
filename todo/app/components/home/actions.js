@@ -66,7 +66,7 @@ export async function createTask(formData) {
     user_id: user_id,
   };
   if (data.due_date === "") {
-    delete data.due_date;
+    data.due_date = null;
   }
 
   const { error } = await supabase.from("todos").insert(data).select();

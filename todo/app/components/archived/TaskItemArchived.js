@@ -12,7 +12,12 @@ const TaskItem = ({
   description,
   status,
 }) => {
-  due_date = due_date.slice(0, 10);
+  if (due_date != null) {
+    due_date = due_date.slice(0, 10);
+  } else {
+    //date input field requires a string, not null
+    due_date = "";
+  }
   const [taskId, setTaskId] = React.useState(id);
 
   return (
@@ -21,7 +26,9 @@ const TaskItem = ({
           <div className="card-header">{title}</div>
           <div className="card-body">
             <p className="card-title">{description}</p>
-            <p className="card-text">Due date: {due_date}</p>
+            <div hidden={due_date ? false : true}>
+              <p className="card-text">Due date: {due_date}</p>
+            </div>
           </div>
         <div className="d-flex justify-content-around p-2">
           <form>

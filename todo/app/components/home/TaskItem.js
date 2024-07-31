@@ -24,14 +24,13 @@ const TaskItem = ({
   const [newStatus, setNewStatus] = React.useState(status);
   const [taskId, setTaskId] = React.useState(id);
   const dateNow = new Date().toISOString().slice(0, 10);
-
   return (
     <>
       <EditTask
-        id={id}
-        due_date={newDueDate}
-        title={newTitle}
-        description={newDescription}
+        task_id={id}
+        task_due_date={newDueDate}
+        task_title={newTitle}
+        task_description={newDescription}
       />
 
       <div className="card text-bg-light mb-3 w-100">
@@ -39,22 +38,24 @@ const TaskItem = ({
           <div className="card-header">{title}</div>
           <div className="card-body">
             <p className="card-title">{description}</p>
-            <div className="d-flex flex-row">
-              <p className="card-text pe-2 m-0">Due date: </p>
-              <p
-                className={
-                  "card-text " +
-                  (newStatus == 1 || newStatus == 2
-                    ? due_date == dateNow
-                      ? "text-warning"
-                      : due_date > dateNow
-                      ? "text-black"
-                      : "text-danger"
-                    : "text-success")
-                }
-              >
-                {due_date}
-              </p>
+            <div hidden={due_date ? false : true}>
+              <div className="d-flex flex-row">
+                <p className="card-text pe-2 m-0">Due date: </p>
+                <p
+                  className={
+                    "card-text " +
+                    (newStatus == 1 || newStatus == 2
+                      ? due_date == dateNow
+                        ? "text-warning"
+                        : due_date > dateNow
+                        ? "text-black"
+                        : "text-danger"
+                      : "text-success")
+                  }
+                >
+                  {due_date}
+                </p>
+              </div>
             </div>
           </div>
         </a>
