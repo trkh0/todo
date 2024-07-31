@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 
 import { createClient } from "../utils/supabase/server";
 
-export async function login(formData) {
+export async function login(previousState, formData) {
   const supabase = createClient();
 
   const data = {
@@ -16,14 +16,14 @@ export async function login(formData) {
   const { error } = await supabase.auth.signInWithPassword(data);
 
   if (error) {
-    redirect("/error");
+    return error.toString();
   }
-
+  
   revalidatePath("/", "layout");
   redirect("/");
 }
 
-export async function signup(formData) {
+export async function signup(previousState, formData) {
   const supabase = createClient();
 
   const data = {
@@ -32,13 +32,11 @@ export async function signup(formData) {
   };
 
   const { error } = await supabase.auth.signUp(data);
-  console.log(error);
 
   if (error) {
-    redirect("/error");
+    return error.toString();
   }
-
+  
   revalidatePath("/", "layout");
   redirect("/");
 }
-
