@@ -104,7 +104,10 @@ const HomeContents = ({ task_data }) => {
                 </select>
               </div>
               <div className="input-group mb-3 d-flex align-items-center mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">
+                <span
+                  className="input-group-text"
+                  id="inputGroup-sizing-default"
+                >
                   Search
                 </span>
                 <input
@@ -112,8 +115,19 @@ const HomeContents = ({ task_data }) => {
                   className="form-control"
                   aria-label="search-input"
                   aria-describedby="search-input-desc"
+                  value={searchFilter}
                   onChange={(e) => setSearchFilter(e.target.value)}
                 />
+                <button
+                  class="btn btn-outline-info"
+                  type="button"
+                  id="search-input-desc"
+                  onClick={() => {
+                    setSearchFilter("");
+                  }}
+                >
+                  Clear
+                </button>
               </div>
             </div>
           </div>
