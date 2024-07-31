@@ -58,6 +58,7 @@ function NewTask() {
                     name="title-input"
                     aria-label="title-input"
                     aria-describedby="inputGroup-sizing-default"
+                    required
                     value={newTitle}
                     onChange={(e) => {
                       setNewTitle(e.target.value);
@@ -129,6 +130,7 @@ function NewTask() {
                   type="button"
                   className="btn btn-secondary"
                   data-bs-dismiss="modal"
+                  formNoValidate
                 >
                   Cancel
                 </button>
@@ -136,7 +138,7 @@ function NewTask() {
                   type="submit"
                   formAction={createTask}
                   className="btn btn-primary"
-                  data-bs-dismiss="modal"
+                  data-bs-dismiss={newTitle ? "modal" : ""}
                 >
                   Add task
                 </button>

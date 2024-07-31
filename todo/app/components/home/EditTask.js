@@ -55,6 +55,7 @@ const EditTask = ({ task_id, task_due_date, task_title, task_description }) => {
                     name="title-input"
                     aria-label="title-input"
                     aria-describedby="inputGroup-sizing-default"
+                    required
                     value={newTitle}
                     onChange={(e) => {
                       setNewTitle(e.target.value);
@@ -133,6 +134,7 @@ const EditTask = ({ task_id, task_due_date, task_title, task_description }) => {
                     setNewDueDate(dueDate);
                     setDueDateChecked(dueDate ? true : false);
                   }}
+                  formNoValidate
                 >
                   Close
                 </button>
@@ -140,12 +142,14 @@ const EditTask = ({ task_id, task_due_date, task_title, task_description }) => {
                   type="submit"
                   formAction={updateTask}
                   className="btn btn-primary"
-                  data-bs-dismiss="modal"
+                  data-bs-dismiss={newTitle ? "modal" : ""}
                   onClick={() => {
-                    setDueDate(newDueDate);
-                    setDescription(newDescription);
-                    setTitle(newTitle);
-                    setDueDateChecked(newDueDate ? true : false);
+                    if (newTitle) {
+                      setDueDate(newDueDate);
+                      setDescription(newDescription);
+                      setTitle(newTitle);
+                      setDueDateChecked(newDueDate ? true : false);
+                    }
                   }}
                 >
                   Save changes
