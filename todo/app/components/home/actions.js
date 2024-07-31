@@ -14,7 +14,7 @@ export async function updateTask(formData) {
     due_date: formData.get("due-date-input"),
   };
   if (data.due_date === "") {
-    delete data.due_date;
+    data.due_date = null;
   }
   let id = formData.get("task-id");
 
