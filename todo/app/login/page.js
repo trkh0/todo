@@ -1,6 +1,7 @@
 import { login, signup } from "./actions";
 
 export default function LoginPage() {
+  // Login and sign up form
   return (
     <div className="d-flex w-100 h-100 justify-content-center align-items-center py-5">
       <form className="d-flex flex-column tw-max-w-96">

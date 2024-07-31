@@ -11,6 +11,7 @@ export default async function HomePage() {
     redirect("/login");
   }
 
+  // Fetch tasks for the user
   const tasks = await supabase
     .from("todos")
     .select("*")

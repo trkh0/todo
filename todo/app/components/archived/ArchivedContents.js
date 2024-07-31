@@ -112,7 +112,7 @@ const ArchivedContents = ({ task_data }) => {
           <div className="d-flex flex-wrap">
             <p hidden={tasks.length ? true : false}>No task found!</p>
             {tasks.map((task) => (
-              <div className=" tw-max-w-96 w-100 px-2">
+              <div className=" tw-max-w-96 w-100 px-2" key={task.id}>
                 <TaskItemArchived
                   key={task.id}
                   id={task.id}

@@ -5,6 +5,7 @@ const Navbar = async () => {
   const supabase = createClient();
   let isAuthenticated = false;
 
+  // Check if the user is authenticated
   const { data, error } = await supabase.auth.getUser();
   if (error || !data?.user) {
     isAuthenticated = false;

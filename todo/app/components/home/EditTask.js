@@ -4,6 +4,7 @@ import React from "react";
 import { updateTask } from "./actions";
 
 const EditTask = ({ task_id, task_due_date, task_title, task_description }) => {
+  // if the due date is not null, the date will be sliced to only show the date
   if (task_due_date != null) {
     task_due_date = task_due_date.slice(0, 10);
   } else {
@@ -17,6 +18,7 @@ const EditTask = ({ task_id, task_due_date, task_title, task_description }) => {
   const [newTitle, setNewTitle] = React.useState(title);
   const [newDescription, setNewDescription] = React.useState(description);
   const [newDueDate, setNewDueDate] = React.useState(dueDate);
+  // if the due date is not null, the checkbox will be checked
   const [dueDateChecked, setDueDateChecked] = React.useState(
     dueDate ? true : false
   );
@@ -95,6 +97,7 @@ const EditTask = ({ task_id, task_due_date, task_title, task_description }) => {
                         id="checkboxNoLabel"
                         aria-label="due_date_checkbox"
                         checked={dueDateChecked}
+                        // if the checkbox is unchecked, the due date will be set to an empty string
                         onChange={(e) => {
                           setDueDateChecked(e.target.checked);
                           if (e.target.checked === false) {
@@ -128,6 +131,7 @@ const EditTask = ({ task_id, task_due_date, task_title, task_description }) => {
                   type="button"
                   className="btn btn-secondary"
                   data-bs-dismiss="modal"
+                  // if chanes are not saved reset the fields to the original values
                   onClick={() => {
                     setNewDescription(description);
                     setNewTitle(title);
@@ -142,6 +146,7 @@ const EditTask = ({ task_id, task_due_date, task_title, task_description }) => {
                   type="submit"
                   formAction={updateTask}
                   className="btn btn-primary"
+                  // if newTitle is empty, the modal will not close, error message will be displayed
                   data-bs-dismiss={newTitle ? "modal" : ""}
                   onClick={() => {
                     if (newTitle) {

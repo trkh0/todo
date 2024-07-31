@@ -12,6 +12,7 @@ const HomeContents = ({ task_data }) => {
   const [searchFilter, setSearchFilter] = React.useState("");
   let tasks = task_data.data;
 
+  // filter tasks by today's date if the checkbox is checked
   if (todayFilter) {
     tasks = task_data.data.filter(
       (task) =>
@@ -22,6 +23,7 @@ const HomeContents = ({ task_data }) => {
     );
   }
 
+  // sort tasks by due date or created date if the select input is changed
   if (orderFilter == 1) {
     tasks = tasks.sort((a, b) => {
       if (a.due_date === null) return 1;
@@ -32,6 +34,7 @@ const HomeContents = ({ task_data }) => {
     tasks = tasks.sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
   }
 
+  // filter tasks by the search input value if it is not empty
   if (searchFilter) {
     tasks = tasks.filter((task) => task.title.includes(searchFilter));
   }
@@ -119,7 +122,7 @@ const HomeContents = ({ task_data }) => {
                   onChange={(e) => setSearchFilter(e.target.value)}
                 />
                 <button
-                  class="btn btn-outline-info"
+                  className="btn btn-outline-info"
                   type="button"
                   id="search-input-desc"
                   onClick={() => {

@@ -44,6 +44,7 @@ const TaskItem = ({
                 <p className="card-text pe-2 m-0">Due date: </p>
                 <p
                   className={
+                    // if the task is not done or in progress, the due date will be colored according to the date
                     "card-text " +
                     (newStatus == 1 || newStatus == 2
                       ? due_date == dateNow

@@ -4,6 +4,7 @@ import React from "react";
 import { createTask } from "./actions";
 
 function NewTask() {
+  // get the current date in the format of yyyy-mm-dd
   const date = new Date().toISOString().slice(0, 10);
   const [newTitle, setNewTitle] = React.useState("");
   const [newDescription, setNewDescription] = React.useState("");
@@ -97,6 +98,7 @@ function NewTask() {
                         id="checkboxNoLabel"
                         aria-label="due_date_checkbox"
                         checked={dueDateChecked}
+                        // if the checkbox is unchecked, the input field will be disabled, and the value will be empty, otherwise it will be the current date
                         onChange={(e) => {
                           setDueDateChecked(e.target.checked);
                           if (e.target.checked === false) {
@@ -138,6 +140,7 @@ function NewTask() {
                   type="submit"
                   formAction={createTask}
                   className="btn btn-primary"
+                  // if newTitle is empty, the modal will not close, error message will be displayed
                   data-bs-dismiss={newTitle ? "modal" : ""}
                 >
                   Add task
