@@ -15,6 +15,7 @@ const HomeContents = ({ task_data }) => {
   if (todayFilter) {
     tasks = task_data.data.filter(
       (task) =>
+        task.due_date != null &&
         task.due_date.slice(8, 10) == currentDate.getDate() &&
         task.due_date.slice(5, 7) == currentDate.getMonth() + 1 &&
         task.due_date.slice(0, 4) == currentDate.getFullYear()
@@ -22,7 +23,11 @@ const HomeContents = ({ task_data }) => {
   }
 
   if (orderFilter == 1) {
-    tasks = tasks.sort((a, b) => (a.due_date > b.due_date ? 1 : -1));
+    tasks = tasks.sort((a, b) => {
+      if (a.due_date === null) return 1;
+      if (b.due_date === null) return -1;
+      return a.due_date > b.due_date ? 1 : -1;
+    });
   } else if (orderFilter == 2) {
     tasks = tasks.sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
   }
