@@ -98,13 +98,13 @@ const HomeContents = ({ task_data }) => {
                   </option>
                 </select>
               </div>
-              <div class="input-group mb-3 d-flex align-items-center mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-default">
+              <div className="input-group mb-3 d-flex align-items-center mb-3">
+                <span className="input-group-text" id="inputGroup-sizing-default">
                   Search
                 </span>
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   aria-label="search-input"
                   aria-describedby="search-input-desc"
                   onChange={(e) => setSearchFilter(e.target.value)}

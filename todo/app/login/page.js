@@ -5,9 +5,9 @@ export default function LoginPage() {
     <div className="d-flex w-100 h-100 justify-content-center align-items-center py-5">
       <form className="d-flex flex-column tw-max-w-96">
       <h4 className="py-2 text-center">Log in or sign up</h4>
-        <div class="input-group mb-3">
+        <div className="input-group mb-3">
           <span
-            class="input-group-text"
+            className="input-group-text"
             id="inputGroup-sizing-default"
             htmlFor="email"
           >
@@ -18,14 +18,14 @@ export default function LoginPage() {
             name="email"
             type="email"
             required
-            class="form-control"
+            className="form-control"
             aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-default"
           />
         </div>
-        <div class="input-group mb-3">
+        <div className="input-group mb-3">
           <span
-            class="input-group-text"
+            className="input-group-text"
             id="inputGroup-sizing-default"
             htmlFor="password"
           >
@@ -37,7 +37,7 @@ export default function LoginPage() {
             type="password"
             minLength={6}
             required
-            class="form-control"
+            className="form-control"
             aria-label="Sizing example input"
             aria-describedby="inputGroup-sizing-default"
           />

@@ -91,7 +91,7 @@ function NewTask() {
                   >
                     <div className="d-flex align-items-center">
                       <input
-                        class="form-check-input mb-1"
+                        className="form-check-input mb-1"
                         type="checkbox"
                         id="checkboxNoLabel"
                         aria-label="due_date_checkbox"

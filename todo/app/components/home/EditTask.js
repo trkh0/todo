@@ -89,7 +89,7 @@ const EditTask = ({ task_id, task_due_date, task_title, task_description }) => {
                   >
                     <div className="d-flex align-items-center">
                       <input
-                        class="form-check-input mb-1"
+                        className="form-check-input mb-1"
                         type="checkbox"
                         id="checkboxNoLabel"
                         aria-label="due_date_checkbox"
